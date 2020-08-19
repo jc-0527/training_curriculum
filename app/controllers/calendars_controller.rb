@@ -34,9 +34,7 @@ class CalendarsController < ApplicationController
       plan = @plans.map do |plan|
         plans.push(plan.plan) if plan.date == @todays_date + x
       end
-      days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => plans}
-      # 曜日の設定
-      days[:week_of_the_day] = wdays[Date.new((@todays_date + x).year, days[:month], days[:date]).cwday]
+      days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => plans, :week_of_the_day => wdays[Date.new((@todays_date + x).year, (@todays_date + x).month, (@todays_date+x).day).wday]}
       @week_days.push(days)
     end
 
